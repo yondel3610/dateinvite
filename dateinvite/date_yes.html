@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Valentine's Date</title>
+    <link rel="stylesheet" href="css/date_yes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="map-container">
+        <!-- Header -->
+        <header class="header">
+            <h1><i class="fas fa-heart"></i> Itinerary <i class="fas fa-heart"></i></h1>
+            <p class="subtitle">Click on the icons</p>
+        </header>
+        
+        <div class="content-wrapper">
+            <!-- Information Panel (Left Side) -->
+            <div class="info-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-info-circle"></i> Details</h2>
+                </div>
+                <div class="info-content">
+                    <div class="default-message">
+                        <i class="fas fa-hand-pointer fa-2x"></i>
+                        <h3>Click the icons.</h3>
+                        <p>Select the icons on the map to see the activities that we'll be doing for each location.</p>
+                    </div>
+                    
+                    <!-- Dynamic content will be inserted here by JavaScript -->
+                    <div class="location-details" id="locationDetails"></div>
+                </div>
+            </div>
+            
+            <!-- Interactive Map (Right Side) -->
+            <div class="map-area">
+                <div class="map-image">
+                    <!-- Soft pink background (no map) -->
+                    <div class="soft-bg"></div>
+                    
+                    <!-- Arrows -->
+                    <div class="arrow arrow-1">↰</div>
+                    <div class="arrow arrow-2">⟶</div>
+                    <div class="arrow arrow-3">⟶</div>
+                    
+                    <!-- Interactive Icons (NO LABELS) -->
+                    <!-- Binondo Icon -->
+                    <div class="location-icon binondo-icon" data-location="binondo">
+                        <img src="icons and other pngs/binondo.png" alt="Binondo" class="custom-icon" draggable="false">
+                    </div>
+                    
+                    <!-- Esplanade Icon -->
+                    <div class="location-icon esplanade-icon" data-location="esplanade">
+                        <img src="icons and other pngs/esplanade-icon.png" alt="Esplanade" class="custom-icon">
+                    </div>
+                    
+                    <!-- Intramuros Icon -->
+                    <div class="location-icon intramuros-icon" data-location="intramuros">
+                        <img src="icons and other pngs/intramuros-icon.png" alt="Intramuros" class="custom-icon">
+                    </div>
+                    
+                    <!-- Central Terminal Icon -->
+                    <div class="location-icon central-icon" data-location="central">
+                        <img src="icons and other pngs/train.png" alt="Central Terminal" class="custom-icon">
+                    </div>
+                </div>
+                
+                <div class="map-footer">
+                    <div class="love-timer">
+                        <i class="fas fa-clock"></i>
+                        <span>Countdown to our date: <span id="countdown">
+                            <ul>
+                                <li><span id="Days">00</span>Days</li>
+                                <li><span id="Hours">00</span>Hours</li>
+                                <li><span id="Minutes">00</span>Minutes</li>
+                                <li><span id="Seconds">00</span>Seconds</li>
+                            </ul>
+                        </span></span>
+                    </div>
+                    <button class="back-btn" onclick="window.history.back()">
+                        <i class="fas fa-arrow-left"></i> Back to Letter
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/date_yes.js"></script>
+</body>
+</html>

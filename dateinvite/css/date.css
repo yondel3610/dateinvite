@@ -1,0 +1,283 @@
+:root{
+    --primary: #fff;
+    --bg-color: rgb(5, 53, 61);
+    --bg-envelope-color: #f5edd1;
+    --envelope-tab: #ecdeb8;
+    --envelope-cover: #e6cfa7;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --txt-color: #444;
+    --heart-color: rgb(252, 8, 231);
+    --yes-btn: #4CAF50;
+    --no-btn: #f44336;
+}
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 100vh;
+  gap: 30px;
+  padding: 20px;
+  position: relative;
+}
+.container > .envelope-wrapper {
+  background: var(--bg-envelope-color);
+  box-shadow: 0 0 40px var(--shadow-color);
+  border-radius: 4px;
+}
+
+.envelope-wrapper.shaking {
+  animation: tilt-shaking 2s infinite;
+}
+
+.container .envelope-wrapper .envelope{
+    position: relative;
+    width: 300px;
+    height: 230px;
+}
+.envelope-wrapper > .envelope::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    border-top: 130px solid var(--envelope-tab);
+    border-right: 150px solid transparent;
+    border-left: 150px solid transparent;
+    transform-origin: top;
+    transition: all 0.5s ease-in-out 0.7s;
+}
+.container .envelope-wrapper .envelope::after{
+    content: "";
+    position: absolute;
+    z-index: 2;
+    width: 0;
+    height: 0;
+    border-top: 130px solid transparent;
+    border-right: 150px solid var(--envelope-cover);
+    border-bottom: 100px solid var(--envelope-cover);
+    border-left: 150px solid var(--envelope-cover);
+}
+.envelope > .letter{
+    position: absolute;
+    right: 20%;
+    bottom: 0;
+    width: 54%;
+    height: 90%;
+    background: var(--primary);
+    text-align: center;
+    transition: all  1s ease-in-out;
+    box-shadow: 0 0 5px var(--shadow-color);
+    padding: 20px 10px;
+    opacity: 0;
+    z-index: 1;
+}
+.container .envelope-wrapper .envelope .letter .text{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: var(--txt-color);
+    text-align: left;
+    font-size: 10px;
+}
+.heart{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    width: 15px;
+    height: 15px;
+    background: var(--heart-color);
+    z-index: 4;
+    transform: translate(-50%, -20%) rotate(-45deg);
+    transition: transform 0.5s ease-in-out 1s;
+    box-shadow: 0 1px 6px var(--shadow-color);
+    cursor: pointer;
+}
+.heart::before,
+.heart::after{
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: var(--heart-color);
+    border-radius: 50%; 
+}
+.heart::before{
+    top: -7.5px;
+}
+.heart::after{
+    right: -7.5px;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.5s ease-in-out;
+    position: relative;
+    min-height: 60px;
+}
+
+.buttons-container.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.buttons-container.centered {
+    justify-content: center;
+    width: 100%;
+}
+
+.btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 100px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.yes-btn {
+    background-color: var(--yes-btn);
+    color: white;
+}
+
+.yes-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.no-btn {
+    background-color: var(--no-btn);
+    color: white;
+}
+
+.no-btn:hover {
+    background-color: #da190b;
+    transform: scale(1.05);
+}
+
+.no-text {
+    position: absolute;
+    left: calc(100% + 15px);
+    background: linear-gradient(135deg, #ff6b8b 0%, #ff8e53 100%);
+    padding: 15px 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    color: white;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    max-width: 250px;
+    min-width: 200px;
+    text-align: center;
+    line-height: 1.4;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.no-text::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #ff6b8b;
+}
+
+.no-text.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Envelope opened state */
+.flap .envelope::before{
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+.flap .envelope .letter {
+    bottom: 100px;
+    transform: scale(1.5);
+    transition-delay: 1s;
+    opacity: 1;
+}
+.flap .heart{
+    transform: rotate(45deg);
+    transition-delay: 0.4s;
+}
+
+/* Remove shaking when envelope is opened */
+.flap.shaking {
+    animation: none;
+}
+
+@keyframes tilt-shaking {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        gap: 20px;
+    }
+    
+    .buttons-container {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .no-text {
+        position: static;
+        margin-top: 10px;
+        text-align: center;
+        width: 100%;
+        left: 0;
+        transform: none;
+        white-space: normal;
+    }
+    
+    .no-text.show {
+        transform: none;
+    }
+}
+
+/* Valentine background animation */
+@keyframes color-change-2x {
+  0% {
+    background-color: #ffe6f2;
+  }
+  100% {
+    background-color: #ffccdd;
+  }
+}
+
+/* Apply to body */
+body {
+    animation: color-change-2x 2s linear infinite alternate both;
+}

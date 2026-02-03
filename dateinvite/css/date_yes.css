@@ -1,0 +1,494 @@
+/* date_yes.css */
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* icon size control | resize icons globally */
+    --icon-size-desktop: 145px;
+    --icon-size-tablet: 100px;
+    --icon-size-mobile: 80px;
+    --icon-size-small: 70px; 
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ffe6f2 0%, #ffccdd 100%);
+    min-height: 100vh;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Header Styles */
+.header {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #ff6b8b 0%, #ff8e53 100%);
+    color: white;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.header .subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Main Content Wrapper */
+.content-wrapper {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 30px;
+    min-height: calc(100vh - 200px);
+}
+
+/* INFORMATION PANEL */
+.info-panel {
+    flex: 0 0 400px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
+
+.panel-header {
+    background: linear-gradient(135deg, #ff6b8b 0%, #ff8e53 100%);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.panel-header h2 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.info-content {
+    padding: 30px;
+    flex-grow: 1;
+}
+
+.default-message {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+.default-message i {
+    color: #ff6b8b;
+    margin-bottom: 15px;
+}
+
+.default-message h3 {
+    color: #ff6b8b;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+/* Location Details (Dynamic Content) */
+.location-details {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.location-details.active {
+    display: block;
+}
+
+.location-header {
+    background: linear-gradient(135deg, #ff6b8b 0%, #ff8e53 100%);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.location-header h3 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.location-info {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.location-info h4 {
+    color: #ff6b8b;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.location-info p {
+    line-height: 1.6;
+    color: #555;
+}
+
+/* map area*/
+.map-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 600px;
+    position: relative;
+}
+
+.map-image {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+}
+
+/* soft pink bg (replaces map) */
+.soft-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffd6e7 0%, #ffcce6 100%);
+    background: #ffe6f2; /* Solid soft pink */
+    opacity: 0.9;
+}
+
+/* arrows */
+.arrow {
+    position: absolute;
+    font-size: 40px;
+    color: #ff6b8b;
+    opacity: 0.7;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.arrow-1 {
+    /*esplanade to binondo*/
+    top: 15%;
+    left: 45%;
+    transform: rotate(360deg);
+}
+
+.arrow-2 {
+    /*intramuro to esplanade*/
+    top: 50%;
+    left: 44%;
+    transform: rotate(-90deg);
+}
+
+.arrow-3 {
+    /*central to intramuros*/
+    top: 70%;
+    left: 60%;
+    transform: rotate(180deg);
+}
+
+/* INTERACTIVE ICONS */
+
+/* positions icons in image */
+.location-icon {
+    position: absolute;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+/* Binondo position */
+.binondo-icon {
+    top: 2%;
+    left: 27%;
+    z-index: 11;
+}
+
+/* Esplanade position */
+.esplanade-icon {
+    top: 23%;
+    right: 44%;
+}
+
+/* Intramuros position */
+.intramuros-icon {
+    top: 58%;
+    right: 43%;
+}
+
+/* Central Terminal position */
+.central-icon {
+    bottom: 10%;
+    right: 15%;
+}
+
+/* PNG Icons - TRANSPARENT BACKGROUND */
+.custom-icon {
+    width: var(--icon-size-desktop);  /* CONTROLLED BY CSS VARIABLE - Change in :root */
+    height: var(--icon-size-desktop); /* CONTROLLED BY CSS VARIABLE - Change in :root */
+    object-fit: contain;
+    transition: all 0.3s ease;
+    display: block; /* Ensures proper sizing */
+}
+
+/* scale up */
+.location-icon:hover .custom-icon {
+    transform: scale(1.03); /* scale effect */
+    filter: drop-shadow(0 6px 12px rgba(255, 107, 139, 0.3));
+}
+
+.location-icon:hover .icon-label {
+    background: #ff6b8b;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* active state */
+.location-icon.active .custom-icon {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 15px rgba(255, 107, 139, 0.5));
+}
+
+/* TIMER FOOTER */
+.map-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+    margin-top: auto; /* FIXED: Changed from margin-top: 20px */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative; /* ADDED: Ensure proper positioning context */
+}
+
+/* countdown */
+.love-timer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+    color: #ff6b8b;
+    font-weight: bold;
+}
+
+#countdown ul {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#countdown li {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 10px;
+    border-radius: 8px;
+    min-width: 60px;
+}
+
+#Days, #Hours, #Minutes, #Seconds {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #ff6b8b;
+    line-height: 1;
+}
+
+#countdown li:after {
+    display: block;
+    font-size: 0.8rem;
+    color: #ff8e53;
+    margin-top: 3px;
+}
+
+/* Back button */
+.back-btn {
+    background: linear-gradient(135deg, #ff6b8b 0%, #ff8e53 100%);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap; /* ADDED: Prevent text wrapping */
+}
+
+.back-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px rgba(255, 107, 139, 0.3);
+}
+
+.back-btn:active {
+    transform: translateY(-1px);
+}
+
+/* RESPONSIVE DESIGN - for other devices*/
+@media (max-width: 1024px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+    
+    .info-panel {
+        flex: 0 0 auto;
+        position: static;
+        width: 100%;
+    }
+    
+    .custom-icon {
+        width: var(--icon-size-tablet);
+        height: var(--icon-size-tablet);
+    }
+    
+    /* positions for tablet */
+    .binondo-icon {
+        top: 15%;
+        left: 10%;
+    }
+    
+    .esplanade-icon {
+        top: 20%;
+        right: 15%;
+    }
+    
+    .intramuros-icon {
+        top: 50%;
+        left: 20%;
+    }
+    
+    .central-icon {
+        bottom: 15%;
+        right: 10%;
+    }
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .map-footer {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        width: 100%; /* FIXED: Changed from 95% */
+        left: auto; /* FIXED: Removed left positioning */
+        padding: 15px; /* ADDED: Adjusted padding for mobile */
+    }
+    
+    .custom-icon {
+        width: var(--icon-size-mobile);
+        height: var(--icon-size-mobile);
+    }
+    
+    .icon-label {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+    
+    /* hide arrows on mobile | fix later on */
+    .arrow {
+        display: none;
+    }
+    
+    /* Stack icons vertically on mobile */
+    .location-icon {
+        position: static;
+        margin-bottom: 20px;
+    }
+    
+    .map-image {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        height: auto;
+    }
+    
+    /* countdown for mobile */
+    #countdown ul {
+        gap: 8px;
+        flex-wrap: wrap; /* ADDED: Allow wrapping on very small screens */
+        justify-content: center; /* ADDED: Center countdown items */
+    }
+    
+    #countdown li {
+        min-width: 50px;
+        padding: 6px 8px;
+    }
+    
+    #Days, #Hours, #Minutes, #Seconds {
+        font-size: 1.3rem;
+    }
+    
+    .back-btn {
+        width: 100%; /* ADDED: Full width on mobile */
+        justify-content: center; /* ADDED: Center button content */
+    }
+}
+
+@media (max-width: 480px) {
+    .custom-icon {
+        width: var(--icon-size-small);
+        height: var(--icon-size-small);
+    }
+    
+    .icon-label {
+        font-size: 0.8rem;
+    }
+    
+    #countdown ul {
+        gap: 6px;
+    }
+    
+    #countdown li {
+        min-width: 45px;
+        padding: 5px 7px;
+    }
+    
+    #Days, #Hours, #Minutes, #Seconds {
+        font-size: 1.1rem;
+    }
+    
+    .love-timer {
+        font-size: 0.9rem; /* ADDED: Smaller font for very small screens */
+    }
+}
